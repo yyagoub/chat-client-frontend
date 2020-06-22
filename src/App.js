@@ -1,29 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
 import Layout from './components/layout/Layout';
+import RoutesPublic from './util/routes/RoutesPublic';
+import RoutesPrivate from './util/routes/RoutesPrivate';
+
+import { useSelector } from 'react-redux';
 
 function App() {
+  const user = useSelector((state) => state.UserModel);
   return (
-    <div className='App'>
-      <Layout>
-        <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className='App-link'
-            href='https://reactjs.org'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            Learn React
-          </a>
-        </header>
-      </Layout>
-    </div>
+    <Layout>{user.loggedIn ? <RoutesPrivate /> : <RoutesPublic />}</Layout>
   );
 }
 
