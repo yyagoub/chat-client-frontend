@@ -1,14 +1,27 @@
 import axios from 'axios'; // used with authentication api calls without bearer token
 import { Api, BASE_PATH } from '../../util/api/Api'; // used with any api call with bearer token
 import { history } from '../../util/routes/history';
-import { UserActions } from './UserActions';
+import {
+  LoginSubmit,
+  LoginSuccessToken,
+  //  LoginSuccessUser,
+  LoginReject,
+  LogoutSubmit,
+  //  LogoutSuccess,
+  //  LogoutReject,
+  LanguageSubmit,
+  LanguageSuccess,
+  LanguageReject,
+  SignupSubmit,
+  SignupSuccess,
+  SignupRejected,
+} from './UserActions';
 
 //login  actions
 export const Login = (user) => {
   return (dispatch) => {
-    if (!user || !user.username || !user.password)
-      dispatch(UserActions.LoginReject());
-    dispatch(UserActions.LoginSubmit(user));
+    if (!user || !user.username || !user.password) dispatch(LoginReject());
+    dispatch(LoginSubmit(user));
     axios
       .request({
         url: '/auth',
@@ -18,22 +31,22 @@ export const Login = (user) => {
       })
       .then((response) => {
         console.log(response.data);
-        dispatch(UserActions.LoginSuccessToken(response.data));
+        dispatch(LoginSuccessToken(response.data));
       })
       .catch((error) => {
         console.log(error.response.data);
-        dispatch(UserActions.LoginReject());
+        dispatch(LoginReject());
       });
     history.push('/dashboard');
   };
 };
 
 // create new user
-const Signup = (user) => {
+export const Signup = (user) => {
   return (dispatch) => {
     if (user.username === undefined || user.password === undefined)
-      dispatch(UserActions.SignupRejected());
-    dispatch(UserActions.SignupSubmit(user));
+      dispatch(SignupRejected());
+    dispatch(SignupSubmit(user));
     axios
       .request({
         url: '/register',
@@ -42,11 +55,11 @@ const Signup = (user) => {
         data: { ...user },
       })
       .then((response) => {
-        dispatch(UserActions.SignupSuccess(response.data));
+        dispatch(SignupSuccess(response.data));
       })
       .catch((error) => {
         console.log(error.response.data);
-        dispatch(UserActions.SignupRejected());
+        dispatch(SignupRejected());
       });
   };
 };
@@ -55,7 +68,7 @@ const Signup = (user) => {
 // to cancel jwt token from server side
 export const Logout = () => {
   return (dispatch) => {
-    dispatch(UserActions.LogoutSubmit());
+    dispatch(LogoutSubmit());
   };
 };
 
@@ -63,21 +76,13 @@ export const Logout = () => {
 export const changeLanguage = (user) => {
   return (dispatch) => {
     if (!user || !user.username || !user.language) return;
-    dispatch(UserActions.LanguageSubmit(user));
+    dispatch(LanguageSubmit(user));
     Api.post('authenticate/language', user)
       .then((response) => {
-        dispatch(UserActions.LanguageSuccess(response.data));
+        dispatch(LanguageSuccess(response.data));
       })
       .catch((error) => {
-        dispatch(UserActions.LanguageReject());
+        dispatch(LanguageReject());
       });
   };
-};
-
-// ACTIONS CREATORS   ->   USED IN dispatch() CALLS
-export const UserActionsCreators = {
-  Login,
-  Signup,
-  Logout,
-  changeLanguage,
 };

@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
 import UserModel from '../../models/user/UserModel';
+import ConversationsModel from '../../models/conversation/ConversationsModel';
 
 const rootReducer = combineReducers({
   UserModel,
+  ConversationsModel,
 });
 
 /****************************************************

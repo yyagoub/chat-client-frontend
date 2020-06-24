@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
-import { UserActionsCreators } from '../../models/user/UserActionsCreators';
+import { Login } from '../../models/user/UserActionsCreators';
 import { NavLink } from 'react-router-dom';
 
 const NormalLoginForm = () => {
@@ -12,7 +12,7 @@ const NormalLoginForm = () => {
     if (values.username === undefined || values.password === undefined) return;
     if (values.username.trim() === '' || values.password.trim() === '') return;
     const user = { ...values };
-    dispatch(UserActionsCreators.Login(user));
+    dispatch(Login(user));
   };
 
   return (
@@ -73,7 +73,7 @@ const NormalLoginForm = () => {
           >
             Log in
           </Button>
-          Or{' '}
+          {' Or '}
           <NavLink to={'/signup'} className='a' exact>
             register now!
           </NavLink>

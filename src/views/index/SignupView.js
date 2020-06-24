@@ -1,12 +1,6 @@
 import React from 'react';
 import SignupForm from '../../components/forms/SignupForm';
 
-const SignupView = (props) => {
-  return (
-    <>
-      <SignupForm />
-    </>
-  );
-};
+const SignupView = () => <SignupForm />;
 
 export default SignupView;

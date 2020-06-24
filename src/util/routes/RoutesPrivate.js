@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import ChatView from '../../views/chat/ChatView';
+import SearchFriendView from '../../views/searchFriend/SearchFriendView';
 
 export const routes = [
   {
@@ -9,6 +10,11 @@ export const routes = [
     name: 'Chat',
     component: ChatView,
     defualtRoute: true,
+  },
+  {
+    path: '/find-friend',
+    name: 'Find a friend!',
+    component: SearchFriendView,
   },
 ];
 

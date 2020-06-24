@@ -1,4 +1,6 @@
 import React from 'react';
+import { Router } from 'react-router-dom';
+import { history } from './util/routes/history';
 
 import Layout from './components/layout/Layout';
 import RoutesPublic from './util/routes/RoutesPublic';
@@ -9,7 +11,9 @@ import { useSelector } from 'react-redux';
 function App() {
   const user = useSelector((state) => state.UserModel);
   return (
-    <Layout>{user.loggedIn ? <RoutesPrivate /> : <RoutesPublic />}</Layout>
+    <Router history={history}>
+      <Layout>{user.loggedIn ? <RoutesPrivate /> : <RoutesPublic />}</Layout>
+    </Router>
   );
 }
 

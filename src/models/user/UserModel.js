@@ -1,3 +1,15 @@
+import {
+  LoginSubmit,
+  LoginSuccessToken,
+  LoginSuccessUser,
+  LoginReject,
+  LogoutSubmit,
+  LogoutSuccess,
+  LogoutReject,
+  LanguageSubmit,
+  LanguageSuccess,
+  LanguageReject,
+} from './UserActions';
 const initialState = {
   firstName: ' ',
   lastName: ' ',
@@ -14,7 +26,7 @@ const initialState = {
 const UserModel = (state = initialState, action) => {
   switch (action.type) {
     // Login actions
-    case 'LOGIN_SUBMIT':
+    case LoginSubmit:
       state = {
         ...state,
         username: action.payload.User.username,
@@ -25,7 +37,7 @@ const UserModel = (state = initialState, action) => {
         submitted: true,
       };
       break;
-    case 'LOGIN_SUCCESS_TOKEN':
+    case LoginSuccessToken:
       state = {
         ...state,
         username: action.payload.User.username,
@@ -35,7 +47,7 @@ const UserModel = (state = initialState, action) => {
         submitted: false,
       };
       break;
-    case 'LOGIN_SUCCESS_USER':
+    case LoginSuccessUser:
       state = {
         ...state,
         jwt: action.payload.User.token,
@@ -45,7 +57,7 @@ const UserModel = (state = initialState, action) => {
         submitted: false,
       };
       break;
-    case 'LOGIN_REJECT':
+    case LoginReject:
       state = {
         username: '',
         password: '',
@@ -57,32 +69,32 @@ const UserModel = (state = initialState, action) => {
       };
       break;
     // Logout actions
-    case 'LOGOUT_SUBMIT':
+    case LogoutSubmit:
       // removed to the root reducer in (store->UsersListReducer) directory
       // state = initialState;
       break;
-    case 'LOGOUT_SUCCESS':
+    case LogoutSuccess:
       // removed to the root reducer in (store->UsersListReducer) directory
       // state = initialState;
       break;
-    case 'LOGOUT_REJECT':
+    case LogoutReject:
       // removed to the root reducer in (store->UsersListReducer) directory
       // state = initialState;
       break;
     // change language actions
-    case 'LANDING_CHANGE_LANGUAGE_SUBMIT':
+    case LanguageSubmit:
       state = {
         ...state,
         submitted: true,
       };
       break;
-    case 'LANDING_CHANGE_LANGUAGE_SUCCESS':
+    case LanguageSuccess:
       state = {
         ...state,
         language: action.payload.User.language,
       };
       break;
-    case 'LANDING_CHANGE_LANGUAGE_REJECT':
+    case LanguageReject:
       state = {
         ...state,
         submitted: false,

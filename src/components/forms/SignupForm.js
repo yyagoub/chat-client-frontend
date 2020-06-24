@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
-import { UserActionsCreators } from '../../models/user/UserActionsCreators';
+import { Signup } from '../../models/user/UserActionsCreators';
 
 const SignupForm = () => {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const SignupForm = () => {
     if (values.username === undefined || values.password === undefined) return;
     if (values.username.trim() === '' || values.password.trim() === '') return;
     const user = { ...values };
-    dispatch(UserActionsCreators.Signup(user));
+    dispatch(Signup(user));
   };
 
   return (

@@ -1,23 +1,23 @@
 // login  actions
-const LoginSubmit = (User) => {
+export const LoginSubmit = (User) => {
   return {
     type: 'LOGIN_SUBMIT',
     payload: { User: User },
   };
 };
-const LoginSuccessToken = (User) => {
+export const LoginSuccessToken = (User) => {
   return {
     type: 'LOGIN_SUCCESS_TOKEN',
     payload: { User: User },
   };
 };
-const LoginSuccessUser = (User) => {
+export const LoginSuccessUser = (User) => {
   return {
     type: 'LOGIN_SUCCESS_USER',
     payload: { User: User },
   };
 };
-const LoginReject = () => ({
+export const LoginReject = () => ({
   type: 'LOGIN_REJECT',
   payload: {},
 });
@@ -51,32 +51,15 @@ export const LanguageReject = () => ({
 });
 
 // create new user
-const SignupSubmit = (user) => ({
+export const SignupSubmit = (user) => ({
   type: 'USERS_ADD_USER_SUBMIT',
   payload: { user },
 });
-const SignupSuccess = () => ({
+export const SignupSuccess = () => ({
   type: 'USERS_ADD_USER_SUCCESS',
   payload: {},
 });
-const SignupRejected = (user) => ({
+export const SignupRejected = (user) => ({
   type: 'USERS_ADD_USER_REJECT',
   payload: { user },
 });
-
-// ACTIONS CREATORS   ->   USED IN dispatch() CALLS
-export const UserActions = {
-  LoginSubmit,
-  LoginSuccessToken,
-  LoginSuccessUser,
-  LoginReject,
-  LogoutSubmit,
-  LogoutSuccess,
-  LogoutReject,
-  LanguageSubmit,
-  LanguageSuccess,
-  LanguageReject,
-  SignupSubmit,
-  SignupSuccess,
-  SignupRejected,
-};
