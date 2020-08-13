@@ -27,14 +27,12 @@ export const Login = (user) => {
         data: { ...user },
       })
       .then((response) => {
-        console.log(response.data);
         dispatch(LoginSuccess(response.data));
+        history.push('/dashboard');
       })
       .catch((error) => {
-        console.log(error.response.data);
         dispatch(LoginReject());
       });
-    history.push('/dashboard');
   };
 };
 
@@ -53,6 +51,7 @@ export const Signup = (user) => {
       })
       .then((response) => {
         dispatch(SignupSuccess(response.data));
+        history.push('/login');
       })
       .catch((error) => {
         dispatch(SignupRejected());

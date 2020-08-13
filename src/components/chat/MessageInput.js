@@ -12,6 +12,7 @@ const MessageInput = ({ message, setMessage, sendMessage }) => (
           bordered={false}
           onChange={(e) => setMessage(e.target.value)}
           value={message}
+          onKeyPress={(e) => (e.key === 'Enter' ? sendMessage(e) : null)}
         />
       </Col>
       <Col span={1}>
