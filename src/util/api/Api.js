@@ -36,3 +36,9 @@ Api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+// used without token
+export const PublicApi = axios.create({
+  baseURL: BASE_PATH,
+  timeout: 2000,
+});

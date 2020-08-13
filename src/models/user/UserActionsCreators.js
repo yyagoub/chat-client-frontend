@@ -3,12 +3,9 @@ import { Api, BASE_PATH } from '../../util/api/Api'; // used with any api call w
 import { history } from '../../util/routes/history';
 import {
   LoginSubmit,
-  LoginSuccessToken,
-  //  LoginSuccessUser,
+  LoginSuccess,
   LoginReject,
   LogoutSubmit,
-  //  LogoutSuccess,
-  //  LogoutReject,
   LanguageSubmit,
   LanguageSuccess,
   LanguageReject,
@@ -31,7 +28,7 @@ export const Login = (user) => {
       })
       .then((response) => {
         console.log(response.data);
-        dispatch(LoginSuccessToken(response.data));
+        dispatch(LoginSuccess(response.data));
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -58,7 +55,6 @@ export const Signup = (user) => {
         dispatch(SignupSuccess(response.data));
       })
       .catch((error) => {
-        console.log(error.response.data);
         dispatch(SignupRejected());
       });
   };

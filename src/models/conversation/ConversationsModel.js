@@ -1,7 +1,7 @@
 import {
-  FindFriendSubmit,
-  FindFriendSuccess,
-  FindFriendReject,
+  CONVERSATION_FIND_FRIEND_SUBMIT,
+  CONVERSATION_FIND_FRIEND_REJECT,
+  CONVERSATION_FIND_FRIEND_SUCCESS,
 } from './ConversationsActions';
 
 const initialState = {
@@ -12,10 +12,10 @@ const initialState = {
 const ConversationModel = (state = initialState, action) => {
   switch (action.type) {
     // Login actions
-    case FindFriendSubmit:
+    case CONVERSATION_FIND_FRIEND_SUBMIT:
       state = initialState;
       break;
-    case FindFriendSuccess:
+    case CONVERSATION_FIND_FRIEND_REJECT:
       if (!action.payload.conversations)
         state = { conversations: [], error: 'error!' };
       else
@@ -24,7 +24,7 @@ const ConversationModel = (state = initialState, action) => {
           error: undefined,
         };
       break;
-    case FindFriendReject:
+    case CONVERSATION_FIND_FRIEND_SUCCESS:
       if (!action.payload.error) state = { conversations: [], error: 'error!' };
       else state = { conversations: [], error: action.payload.error };
       break;

@@ -2,10 +2,12 @@ import { combineReducers } from 'redux';
 
 import UserModel from '../../models/user/UserModel';
 import ConversationsModel from '../../models/conversation/ConversationsModel';
+import Friends from '../../models/friends/Friends';
 
 const rootReducer = combineReducers({
   UserModel,
   ConversationsModel,
+  Friends,
 });
 
 /****************************************************

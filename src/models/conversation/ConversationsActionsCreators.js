@@ -1,8 +1,8 @@
 import { Api } from '../../util/api/Api'; // used with any api call with bearer token
-import { history } from '../../util/routes/history';
+//import { history } from '../../util/routes/history';
 import {
   FindFriendSubmit,
-  FindFriendSuccess,
+  //FindFriendSuccess,
   FindFriendReject,
 } from './ConversationsActions';
 

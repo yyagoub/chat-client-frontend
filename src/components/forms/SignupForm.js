@@ -2,18 +2,9 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { useDispatch } from 'react-redux';
-import { Signup } from '../../models/user/UserActionsCreators';
+import { NavLink } from 'react-router-dom';
 
-const SignupForm = () => {
-  const dispatch = useDispatch();
-  const onFormSubmit = (values) => {
-    if (values.username === undefined || values.password === undefined) return;
-    if (values.username.trim() === '' || values.password.trim() === '') return;
-    const user = { ...values };
-    dispatch(Signup(user));
-  };
-
+const SignupForm = ({ user, onFormSubmit }) => {
   return (
     <div
       style={{
@@ -43,6 +34,9 @@ const SignupForm = () => {
               message: 'Please input your Username!',
             },
           ]}
+          validateStatus={
+            user.usernameErr || user.passwordErr ? 'error' : 'success'
+          }
         >
           <Input
             prefix={<UserOutlined className='site-form-item-icon' />}
@@ -57,6 +51,9 @@ const SignupForm = () => {
               message: 'Please input your Password!',
             },
           ]}
+          validateStatus={
+            user.usernameErr || user.passwordErr ? 'error' : 'success'
+          }
         >
           <Input
             prefix={<LockOutlined className='site-form-item-icon' />}
@@ -73,6 +70,10 @@ const SignupForm = () => {
           >
             Register
           </Button>
+          {' Or '}
+          <NavLink to={'/login'} className='a' exact>
+            login!
+          </NavLink>
         </Form.Item>
       </Form>
     </div>

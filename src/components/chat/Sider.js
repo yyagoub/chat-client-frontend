@@ -11,21 +11,23 @@ const friendsItems = (friends) => {
 
 const Sider = ({ friends }) => (
   <Layout.Sider className='site-layout-background' width={200}>
+    {/*
+    <Button
+      type='link'
+      block
+      onClick={() => {
+        history.push('/find-friend');
+      }}
+    >
+      Find a friend!
+    </Button>
+    */}
     <Menu
       mode='inline'
       defaultSelectedKeys={['1']}
       defaultOpenKeys={['sub1']}
       style={{ height: '100%' }}
     >
-      <Button
-        type='link'
-        block
-        onClick={() => {
-          history.push('/find-friend');
-        }}
-      >
-        Find a friend!
-      </Button>
       {friendsItems(friends)}
     </Menu>
   </Layout.Sider>

@@ -1,14 +1,16 @@
 import {
-  LoginSubmit,
-  LoginSuccessToken,
-  LoginSuccessUser,
-  LoginReject,
-  LogoutSubmit,
-  LogoutSuccess,
-  LogoutReject,
-  LanguageSubmit,
-  LanguageSuccess,
-  LanguageReject,
+  LANDING_CHANGE_LANGUAGE_REJECT,
+  LANDING_CHANGE_LANGUAGE_SUBMIT,
+  LANDING_CHANGE_LANGUAGE_SUCCESS,
+  LOGIN_REJECT,
+  LOGIN_SUBMIT,
+  LOGIN_SUCCESS,
+  LOGOUT_REJECT,
+  LOGOUT_SUBMIT,
+  LOGOUT_SUCCESS,
+  USERS_ADD_USER_SUBMIT,
+  USERS_ADD_USER_SUCCESS,
+  USERS_ADD_USER_REJECT,
 } from './UserActions';
 const initialState = {
   firstName: ' ',
@@ -26,7 +28,7 @@ const initialState = {
 const UserModel = (state = initialState, action) => {
   switch (action.type) {
     // Login actions
-    case LoginSubmit:
+    case LOGIN_SUBMIT:
       state = {
         ...state,
         username: action.payload.User.username,
@@ -37,7 +39,7 @@ const UserModel = (state = initialState, action) => {
         submitted: true,
       };
       break;
-    case LoginSuccessToken:
+    case LOGIN_SUCCESS:
       state = {
         ...state,
         username: action.payload.User.username,
@@ -47,17 +49,7 @@ const UserModel = (state = initialState, action) => {
         submitted: false,
       };
       break;
-    case LoginSuccessUser:
-      state = {
-        ...state,
-        jwt: action.payload.User.token,
-        firstName: action.payload.User.firstName,
-        lastName: action.payload.User.lastName,
-        loggedIn: true,
-        submitted: false,
-      };
-      break;
-    case LoginReject:
+    case LOGIN_REJECT:
       state = {
         username: '',
         password: '',
@@ -69,36 +61,46 @@ const UserModel = (state = initialState, action) => {
       };
       break;
     // Logout actions
-    case LogoutSubmit:
+    case LOGOUT_SUBMIT:
       // removed to the root reducer in (store->UsersListReducer) directory
       // state = initialState;
       break;
-    case LogoutSuccess:
+    case LOGOUT_SUCCESS:
       // removed to the root reducer in (store->UsersListReducer) directory
       // state = initialState;
       break;
-    case LogoutReject:
+    case LOGOUT_REJECT:
       // removed to the root reducer in (store->UsersListReducer) directory
       // state = initialState;
       break;
     // change language actions
-    case LanguageSubmit:
+    case LANDING_CHANGE_LANGUAGE_SUBMIT:
       state = {
         ...state,
         submitted: true,
       };
       break;
-    case LanguageSuccess:
+    case LANDING_CHANGE_LANGUAGE_SUCCESS:
       state = {
         ...state,
         language: action.payload.User.language,
       };
       break;
-    case LanguageReject:
+    case LANDING_CHANGE_LANGUAGE_REJECT:
       state = {
         ...state,
         submitted: false,
       };
+      break;
+    // create new user
+    case USERS_ADD_USER_SUBMIT:
+      state = { ...state };
+      break;
+    case USERS_ADD_USER_SUCCESS:
+      state = { ...state };
+      break;
+    case USERS_ADD_USER_REJECT:
+      state = { ...state, usernameErr: true, passwordErr: true };
       break;
     // default value
     default:

@@ -1,17 +1,14 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { Divider } from 'antd';
+import { Divider, Typography } from 'antd';
 
-const Message = ({ owner, username, message }) => {
-  const orientation = owner === 'me' ? 'left' : 'right';
-  return (
-    <>
-      <Divider orientation={orientation} plain>
-        {username}
-      </Divider>
-      <p>{message}</p>
-    </>
-  );
-};
+const Message = ({ username, context }) => (
+  <>
+    <Divider orientation={username ? 'left' : 'right'}>
+      {username || 'me'}
+    </Divider>
+    <Typography.Text code>{context || ' '}</Typography.Text>
+  </>
+);
 
 export default Message;
